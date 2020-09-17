@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import 'bootstrap/dist/css/bootstrap.min.css'
+//Plugins
+import vuetify from './plugins/vuetify'
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -25,4 +26,8 @@ const routes = [
 
 const router = new VueRouter({ mode: 'history', routes: routes });
 
-new Vue(Vue.util.extend({ router }, App)).$mount('#app');
+new Vue({
+  vuetify,
+  router,
+  render: h => h(App)
+  }).$mount('#app');
