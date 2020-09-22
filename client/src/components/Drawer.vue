@@ -2,19 +2,11 @@
   <div>
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-        <v-list-item
+        <DrawerItem
           v-for="pageLink of pagesLinks"
           :key="pageLink.link"
-          link
-          :to="pageLink.link"
-        >
-          <v-list-item-action>
-            <v-icon>{{ pageLink.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ pageLink.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          :pageLink="pageLink"
+        />
       </v-list>
     </v-navigation-drawer>
 
@@ -25,21 +17,26 @@
   </div>
 </template>
 <script>
+import DrawerItem from "./DrawerItem.vue";
+
 export default {
   data: () => ({
     drawer: true,
     pagesLinks: [
       {
-        icon: "mdi-view-dashboard",
-        title: "Dashboard",
+        icon: "mdi-home",
+        title: "Главная",
         link: "/",
       },
       {
-        icon: "mdi-cog",
-        title: "Settings",
+        icon: "mdi-skull-scan",
+        title: "Сканирование файла",
         link: "/scan",
       },
     ],
   }),
+  components: {
+    DrawerItem,
+  },
 };
 </script>
