@@ -6,8 +6,20 @@ const { Schema } = mongoose;
 const File = new Schema({
   title: {
     type: String,
+    required: true,
   },
-  body: {
+  date: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: true,
+  },
+  checksum: {
+    type: String,
+  },
+  state: {
     type: String,
   },
 }, {
