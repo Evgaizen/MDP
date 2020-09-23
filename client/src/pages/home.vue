@@ -1,6 +1,18 @@
 <template>
   <div class="home">
     <div class="home__card">
+      <h2 class="home__card-title">Новости</h2>
+      <div class="home__card-body">
+        <a
+          class="twitter-timeline"
+          data-width="650"
+          data-height="320"
+          href="https://twitter.com/d27oo?ref_src=twsrc%5Etfw"
+          >Tweets by d27oo</a
+        >
+      </div>
+    </div>
+    <div class="home__card">
       <h2 class="home__card-title">О нас</h2>
       <div class="home__card-body">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat ut
