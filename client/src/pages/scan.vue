@@ -7,29 +7,37 @@
             :rotate="360"
             :size="150"
             :width="10"
-            :value="100"
-            color="success"
+            :value="uploadPercent"
+            :color="uploadPercent !== null ? 'warning' : 'success'"
           >
-            Чисто
+            {{ uploadPercent !== null ? `${uploadPercent}%` : "Файл загружен" }}
           </v-progress-circular>
         </div>
         <div>
           <article class="col">
-            <h1>Viruses</h1>
-            <div>Расширение файла: bat</div>
-            <div>Время загрузки файла: 17:40</div>
-            <div>Размер: 6mb</div>
+            <h1>{{ files[files.length - 1].title }}</h1>
+            <div>Дата загрузки файла: {{ files[files.length - 1].date }}</div>
+            <div>Размер: {{ files[files.length - 1].size }}</div>
+            <div>Контрольная сумма: {{ files[files.length - 1].checksum }}</div>
           </article>
         </div>
         <div class="d-flex align-center">
-          <v-btn>Загрузить файл</v-btn>
+          <v-btn type="file" @click.prevent="$refs.inputUpload.click()"
+            >Загрузить файл</v-btn
+          >
+          <input
+            v-show="false"
+            ref="inputUpload"
+            type="file"
+            @change="uploadFile"
+          />
         </div>
       </v-row>
     </v-card>
     <v-data-table
       :headers="headers"
       :items="files"
-      :items-per-page="5"
+      :items-per-page="files.length || 5"
       class="elevation-1 mt-3"
       hide-default-footer
     ></v-data-table>
@@ -37,6 +45,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -45,21 +55,30 @@ export default {
           text: "Наименование файла",
           align: "start",
           sortable: false,
-          value: "name",
+          value: "title",
         },
-        { text: "Расширение файла", value: "extension" },
         { text: "Дата загрузки", value: "date" },
         { text: "Размер файла", value: "size" },
-      ],
-      files: [
-        {
-          name: "Frozen Yogurt",
-          extension: "bat",
-          date: new Date(),
-          size: "6mb",
-        },
+        { text: "Контрольная сумма (MD5)", value: "checksum", sortable: false },
       ],
     };
+  },
+  mounted() {
+    this.$store.dispatch("getAllFiles");
+  },
+  computed: {
+    ...mapGetters({
+      files: "getAllFiles",
+      uploadPercent: "getUploadPercent",
+    }),
+  },
+  methods: {
+    uploadFile(e) {
+      const file = e.target.files[0];
+      if (file) {
+        this.$store.dispatch("uploadFile", file);
+      }
+    },
   },
 };
 </script>

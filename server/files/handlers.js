@@ -18,7 +18,7 @@ module.exports = {
       const file = await new File({
         title: fileData.name,
         date: new Date().toLocaleString(),
-        size: (fileData.size / (1024 * 1024)).toFixed(2),
+        size: `${(fileData.size / (1024 * 1024)).toFixed(3)}mb`,
         state: 'ok',
         checksum: fileData.md5,
       });
