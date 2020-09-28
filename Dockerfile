@@ -15,6 +15,9 @@ RUN npm run build
 
 FROM node:latest
 
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install clamav -y
+
 WORKDIR /usr/src/app
 COPY --from=client /usr/app/client/dist/ ./client/dist/
 
