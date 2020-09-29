@@ -1,4 +1,9 @@
+const NodeClam = require('clamscan');
+const path = require('path');
+const fs = require('fs');
 const File = require('./model');
+
+const ClamScan = new NodeClam().init();
 
 module.exports = {
   getAllFiles: async (req, res) => {
@@ -15,13 +20,34 @@ module.exports = {
       res.status(400).send('File dont upload');
     } else {
       const fileData = await req.files.file;
+      const filePath = await path.join(__dirname, `../files/uploads/${fileData.name}`);
+
+      await fileData.mv(filePath, (err) => {
+        if (err) {
+          res.status(500).send(err);
+        }
+      });
+
+      const scanResult = await ClamScan.then(async (clamscan) => {
+        const { is_infected, file, viruses } = await clamscan.is_infected(filePath);
+        return {
+          isInfected: is_infected,
+          viruses,
+        };
+      }).catch((err) => {
+        res.status(500).send(err);
+      });
+
       const file = await new File({
         title: fileData.name,
         date: new Date().toLocaleString(),
         size: `${(fileData.size / (1024 * 1024)).toFixed(3)}mb`,
-        state: 'ok',
         checksum: fileData.md5,
+        ...scanResult,
       });
+
+      await fs.unlinkSync(filePath);
+
       await file.save().then(() => {
         res.status(200).json(file);
       }).catch((err) => {

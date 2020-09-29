@@ -19,8 +19,11 @@ const File = new Schema({
   checksum: {
     type: String,
   },
-  state: {
-    type: String,
+  isInfected: {
+    type: Boolean,
+  },
+  viruses: {
+    type: Array,
   },
 }, {
   collection: 'files',

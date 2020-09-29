@@ -8,9 +8,10 @@
             :size="150"
             :width="10"
             :value="uploadPercent"
-            :color="uploadPercent !== null ? 'warning' : 'success'"
+            :color="getColorState"
+            :indeterminate="getIndeterminate"
           >
-            {{ uploadPercent !== null ? `${uploadPercent}%` : "Файл загружен" }}
+            {{ getFileState }}
           </v-progress-circular>
         </div>
         <div>
@@ -43,7 +44,13 @@
       :items-per-page="files.length || 5"
       class="elevation-1 mt-3"
       hide-default-footer
-    ></v-data-table>
+    >
+      <template v-slot:item.title="{ item }">
+        <v-chip :color="item.isInfected ? 'error' : 'success'">
+          {{ item.title }}
+        </v-chip>
+      </template>
+    </v-data-table>
   </v-col>
 </template>
 
@@ -74,6 +81,37 @@ export default {
       files: "getAllFiles",
       uploadPercent: "getUploadPercent",
     }),
+    getColorState() {
+      if (this.files.length) {
+        if (
+          this.uploadPercent === null &&
+          this.files[this.files.length - 1].isInfected
+        ) {
+          return "error";
+        } else {
+          return this.uploadPercent === null ? "success" : "warning";
+        }
+      } else {
+        return "success";
+      }
+    },
+    getFileState() {
+      if (
+        this.uploadPercent === null &&
+        this.files[this.files.length - 1].isInfected
+      ) {
+        return "В файле вирусы";
+      } else if (this.uploadPercent < 100 && this.uploadPercent !== null) {
+        return this.uploadPercent;
+      } else if (this.uploadPercent === 100) {
+        return "Проверка...";
+      } else {
+        return "Файл чист";
+      }
+    },
+    getIndeterminate() {
+      return this.uploadPercent === 100;
+    },
   },
   methods: {
     uploadFile(e) {
