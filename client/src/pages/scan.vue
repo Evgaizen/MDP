@@ -14,12 +14,15 @@
           </v-progress-circular>
         </div>
         <div>
-          <article class="col">
+          <article v-if="files.length" class="col">
             <h1>{{ files[files.length - 1].title }}</h1>
             <div>Дата загрузки файла: {{ files[files.length - 1].date }}</div>
             <div>Размер: {{ files[files.length - 1].size }}</div>
             <div>Контрольная сумма: {{ files[files.length - 1].checksum }}</div>
           </article>
+          <div v-else>
+            Для начала работы загрузите файл
+          </div>
         </div>
         <div class="d-flex align-center">
           <v-btn type="file" @click.prevent="$refs.inputUpload.click()"
