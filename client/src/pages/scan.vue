@@ -26,7 +26,10 @@
           </div>
         </div>
         <div class="d-flex align-center">
-          <v-btn type="file" @click.prevent="$refs.inputUpload.click()"
+          <v-btn
+            type="file"
+            @click.prevent="$refs.inputUpload.click()"
+            :disabled="uploadPercent !== null"
             >Загрузить файл</v-btn
           >
           <input
@@ -91,23 +94,25 @@ export default {
         } else {
           return this.uploadPercent === null ? "success" : "warning";
         }
-      } else {
-        return "success";
       }
+      return "success";
     },
     getFileState() {
-      if (
-        this.uploadPercent === null &&
-        this.files[this.files.length - 1].isInfected
-      ) {
-        return "В файле вирусы";
-      } else if (this.uploadPercent < 100 && this.uploadPercent !== null) {
-        return this.uploadPercent;
-      } else if (this.uploadPercent === 100) {
-        return "Проверка...";
-      } else {
-        return "Файл чист";
+      if (this.files.length) {
+        if (
+          this.uploadPercent === null &&
+          this.files[this.files.length - 1].isInfected
+        ) {
+          return "В файле вирусы";
+        } else if (this.uploadPercent < 100 && this.uploadPercent !== null) {
+          return this.uploadPercent;
+        } else if (this.uploadPercent === 100) {
+          return "Проверка...";
+        } else {
+          return "Файл чист";
+        }
       }
+      return "В ожидании данных";
     },
     getIndeterminate() {
       return this.uploadPercent === 100;

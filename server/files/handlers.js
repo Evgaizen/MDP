@@ -24,7 +24,7 @@ module.exports = {
 
       await fileData.mv(filePath, (err) => {
         if (err) {
-          res.status(500).send(err);
+          return res.status(500).send(`Error with save file: ${err}`);
         }
       });
 
@@ -34,8 +34,6 @@ module.exports = {
           isInfected: is_infected,
           viruses,
         };
-      }).catch((err) => {
-        res.status(500).send(err);
       });
 
       const file = await new File({
