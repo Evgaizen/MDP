@@ -85,37 +85,35 @@ export default {
       uploadPercent: "getUploadPercent",
     }),
     getColorState() {
-      if (this.files.length) {
-        if (
-          this.uploadPercent === null &&
-          this.files[this.files.length - 1].isInfected
-        ) {
-          return "error";
-        } else {
-          return this.uploadPercent === null ? "success" : "warning";
-        }
+      if (this.files.length && this.uploadPercent === null && this.isInfected) {
+        return "error";
       }
-      return "success";
+      return this.uploadPercent === null ? "success" : "warning";
     },
     getFileState() {
-      if (this.files.length) {
-        if (
-          this.uploadPercent === null &&
-          this.files[this.files.length - 1].isInfected
-        ) {
-          return "В файле вирусы";
-        } else if (this.uploadPercent < 100 && this.uploadPercent !== null) {
-          return this.uploadPercent;
-        } else if (this.uploadPercent === 100) {
-          return "Проверка...";
-        } else {
-          return "Файл чист";
-        }
+      if (this.files.length && this.uploadPercent === null && this.isInfected) {
+        return "В файле вирусы";
+      } else if (this.uploadPercent < 100 && this.uploadPercent !== null) {
+        return this.uploadPercent;
+      } else if (this.uploadPercent === 100) {
+        return "Проверка...";
+      } else if (
+        this.uploadPercent === null &&
+        !this.isInfected &&
+        this.files.length
+      ) {
+        return "Файл чист";
       }
       return "В ожидании данных";
     },
     getIndeterminate() {
       return this.uploadPercent === 100;
+    },
+    isInfected() {
+      if (this.files.length) {
+        return this.files[this.files.length - 1].isInfected;
+      }
+      return false;
     },
   },
   methods: {
