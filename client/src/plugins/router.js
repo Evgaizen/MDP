@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 import Home from '../pages/home.vue'
 import Scan from '../pages/scan.vue'
 import PasswordManager from '../pages/passwordManager.vue'
+import IntegrityСontrol from '../pages/integrityСontrol.vue'
 
 const routes = [
   {
@@ -25,7 +26,12 @@ const routes = [
     name: 'passwordManager',
     path: '/passwordManager',
     component: PasswordManager
-  }
+  },
+  {
+    name: 'integrityСontrol',
+    path: '/integrityСontrol',
+    component: IntegrityСontrol
+  },
 ];
 
 export const router = new VueRouter({ mode: 'history', routes: routes });

@@ -1,60 +1,65 @@
 <template>
-  <v-col class="pa-3">
-    <v-card>
-      <v-row class="py-2 justify-space-around">
-        <div class="text-center">
-          <v-progress-circular
-            :rotate="360"
-            :size="150"
-            :width="10"
-            :value="uploadPercent"
-            :color="getColorState"
-            :indeterminate="getIndeterminate"
-          >
-            {{ getFileState }}
-          </v-progress-circular>
-        </div>
-        <div>
-          <article v-if="files.length" class="col">
-            <h1>{{ files[files.length - 1].title }}</h1>
-            <div>Дата загрузки файла: {{ files[files.length - 1].date }}</div>
-            <div>Размер: {{ files[files.length - 1].size }}</div>
-            <div>Контрольная сумма: {{ files[files.length - 1].checksum }}</div>
-          </article>
-          <div v-else>
-            Для начала работы загрузите файл
+  <div class="file-scan">
+    <div class="file-scan__title">
+      <h1>Сканирование файла</h1>
+    </div>
+    <v-col class="pa-3">
+      <v-card>
+        <v-row class="py-2 justify-space-around">
+          <div class="text-center">
+            <v-progress-circular
+              :rotate="360"
+              :size="150"
+              :width="10"
+              :value="uploadPercent"
+              :color="getColorState"
+              :indeterminate="getIndeterminate"
+            >
+              {{ getFileState }}
+            </v-progress-circular>
           </div>
-        </div>
-        <div class="d-flex align-center">
-          <v-btn
-            type="file"
-            @click.prevent="$refs.inputUpload.click()"
-            :disabled="uploadPercent !== null"
-            >Загрузить файл</v-btn
-          >
-          <input
-            v-show="false"
-            ref="inputUpload"
-            type="file"
-            @change="uploadFile"
-          />
-        </div>
-      </v-row>
-    </v-card>
-    <v-data-table
-      :headers="headers"
-      :items="files"
-      :items-per-page="files.length || 5"
-      class="elevation-1 mt-3"
-      hide-default-footer
-    >
-      <template v-slot:item.title="{ item }">
-        <v-chip :color="item.isInfected ? 'error' : 'success'">
-          {{ item.title }}
-        </v-chip>
-      </template>
-    </v-data-table>
-  </v-col>
+          <div>
+            <article v-if="files.length" class="col">
+              <h1>{{ files[files.length - 1].title }}</h1>
+              <div>Дата загрузки файла: {{ files[files.length - 1].date }}</div>
+              <div>Размер: {{ files[files.length - 1].size }}</div>
+              <div>
+                Контрольная сумма: {{ files[files.length - 1].checksum }}
+              </div>
+            </article>
+            <div v-else>Для начала работы загрузите файл</div>
+          </div>
+          <div class="d-flex align-center">
+            <v-btn
+              type="file"
+              @click.prevent="$refs.inputUpload.click()"
+              :disabled="uploadPercent !== null"
+              >Загрузить файл</v-btn
+            >
+            <input
+              v-show="false"
+              ref="inputUpload"
+              type="file"
+              @change="uploadFile"
+            />
+          </div>
+        </v-row>
+      </v-card>
+      <v-data-table
+        :headers="headers"
+        :items="files"
+        :items-per-page="files.length || 5"
+        class="elevation-1 mt-3"
+        hide-default-footer
+      >
+        <template v-slot:item.title="{ item }">
+          <v-chip :color="item.isInfected ? 'error' : 'success'">
+            {{ item.title }}
+          </v-chip>
+        </template>
+      </v-data-table>
+    </v-col >
+  </div>
 </template>
 
 <script>
@@ -126,3 +131,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.file-scan {
+  &__title {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+  }
+}
+</style>

@@ -38,6 +38,11 @@ export default {
         title: "Менеджер паролей",
         link: "/passwordManager",
       },
+      {
+        icon: "mdi-file-check",
+        title: "Контроль целостности",
+        link: "/integrityСontrol",
+      },
     ],
   }),
   components: {
