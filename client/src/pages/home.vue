@@ -15,69 +15,83 @@
     <div class="home__card">
       <h2 class="home__card-title">О нас</h2>
       <div class="home__card-body">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat ut
-        pariatur, rem temporibus minima ducimus nobis atque, libero rerum
-        accusantium officiis facere, voluptas optio? Pariatur, non eaque.
-        Consequuntur, praesentium nesciunt. Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Magni placeat accusantium ullam nobis,
-        quibusdam consectetur, officia illo, animi deserunt in beatae
-        exercitationem ipsa aut tempora veritatis modi pariatur consequatur
-        laboriosam? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Laborum rem eius quis est eligendi et ratione adipisci, magnam, a
-        obcaecati assumenda recusandae dolor aut fugiat eum quia perspiciatis
-        modi maiores.
+        <div>
+          <p>
+            Антивирусная защита имеет важное значение с учетом множества
+            постоянно возникающих киберугроз. Если у вас не установлено защитное
+            программное обеспечение, вы можете подвергнуться риску заражения
+            вирусом или стать целью другого вредоносного программного
+            обеспечения, которое может остаться незамеченным и нанести ущерб
+            вашему устройству. Но как быть, если вы не хотите устанавливать
+            антивирус локально? <b>Выход есть!</b>
+            Используйте наше удаленно решение.
+          </p>
+          <p>
+            Наше программное обеспечение помогает защитить ваш компьютер от
+            вредоносных программ и киберпреступников. Мы поможем вам проверить
+            файлы, организовать данные ваших учетных записей и удостовериться в
+            том, что ваши локальные файлы соответсвуют файлам из нужного вам
+            источника.
+          </p>
+        </div>
       </div>
     </div>
+
     <div class="home__card">
       <h2 class="home__card-title">Контакты</h2>
       <div class="home__card-body">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat ut
-        pariatur, rem temporibus minima ducimus nobis atque, libero rerum
-        accusantium officiis facere, voluptas optio? Pariatur, non eaque.
-        Consequuntur, praesentium nesciunt. Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Magni placeat accusantium ullam nobis,
-        quibusdam consectetur, officia illo, animi deserunt in beatae
-        exercitationem ipsa aut tempora veritatis modi pariatur consequatur
-        laboriosam? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Laborum rem eius quis est eligendi et ratione adipisci, magnam, a
-        obcaecati assumenda recusandae dolor aut fugiat eum quia perspiciatis
-        modi maiores.
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <h3>Телефон</h3>
+            <ul class="home__card-body-contact-list">
+              <li class="home__card-body-contact-list-item">
+                <img src="../assets/phone-icon.svg" class="mr-2" /> +7 499
+                215-65-65
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <h3>Почта</h3>
+            <ul class="home__card-body-contact-list">
+              <li class="home__card-body-contact-list-item">
+                <img src="../assets/mail-icon.svg" class="mr-2" /> mail@mirea.ru
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <h3>Адрес</h3>
+            <ul class="home__card-body-contact-list">
+              <li class="home__card-body-contact-list-item">
+                <img src="../assets/adress-icon.svg" class="mr-2" /> 119454,
+                ЦФО, г. Москва, Проспект Вернадского, д. 78
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="home__card">
       <h2 class="home__card-title">Документы</h2>
       <div class="home__card-body">
-        <div class="home__document">
-          <div class="home__document-title">Название документа</div>
-          <div class="home__document-description-wrapper">
-            <div class="home__document-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            </div>
-          </div>
-          <div class="home__document-link">
-            <a href="">скачать</a>
-          </div>
-        </div>
-        <div class="home__document">
-          <div class="home__document-title">Название документа</div>
-          <div class="home__document-description-wrapper">
-            <div class="home__document-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            </div>
-          </div>
-          <div class="home__document-link">
-            <a href="">скачать</a>
-          </div>
-        </div>
-        <div class="home__document">
-          <div class="home__document-title">Название документа</div>
-          <div class="home__document-description-wrapper">
-            <div class="home__document-description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            </div>
-          </div>
-          <div class="home__document-link">
-            <a href="">скачать</a>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+            <v-card>
+              <v-card-title>Докумет 1</v-card-title>
+              <v-card-text>
+                <p style="margin: 0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Consequatur voluptatem commodi excepturi nemo corrupti.
+                  Dolorum temporibus molestias id quam magni, tempore, sit
+                  quisquam cum doloribus ex placeat esse commodi rerum!
+                </p>
+              </v-card-text>
+              <v-card-actions>
+                <div class="home__document-download">
+                  <v-btn color="primary lighten-2" text> Скачать </v-btn>
+                </div>
+              </v-card-actions>
+            </v-card>
           </div>
         </div>
       </div>
@@ -91,7 +105,7 @@ export default {};
 <style lang="scss" scoped>
 .home {
   &__card {
-    margin-top: 20px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -104,30 +118,26 @@ export default {};
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      &-contact {
+        &-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          &-item {
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+          }
+        }
+      }
     }
   }
   &__document {
-    margin-top: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    border-radius: 5px;
-    &-title {
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-    }
-    &-description {
-      max-width: 200px;
-      &-wrapper {
-      }
-    }
-    &-link {
-      display: flex;
-      justify-content: center;
-    }
+   &-download {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+   }
   }
 }
 
