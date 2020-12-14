@@ -22,10 +22,10 @@ RUN freshclam
 WORKDIR /usr/src/app
 COPY --from=client /usr/app/client/dist/ ./client/dist/
 
-WORKDIR /usr/src/app/nest-server
-COPY nest-server/package*.json ./
+WORKDIR /usr/src/app/server
+COPY server/package*.json ./
 RUN npm ci
-COPY nest-server/ ./
+COPY server/ ./
 
 
 EXPOSE 3000

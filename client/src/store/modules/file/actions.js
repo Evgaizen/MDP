@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiPath = 'http://localhost:4000/api'
+const apiPath = 'http://localhost:3000/api'
 
 export default {
     async getAllFiles({ commit }) {
