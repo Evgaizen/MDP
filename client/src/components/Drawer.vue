@@ -33,6 +33,11 @@ export default {
         title: "Сканирование файла",
         link: "/scan",
       },
+      {
+        icon: "mdi-security",
+        title: "Менеджер паролей",
+        link: "/passwordManager",
+      },
     ],
   }),
   components: {

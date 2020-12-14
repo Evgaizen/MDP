@@ -8,6 +8,7 @@ Vue.config.productionTip = false
 // Pages
 import Home from '../pages/home.vue'
 import Scan from '../pages/scan.vue'
+import PasswordManager from '../pages/passwordManager.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     name: 'scan',
     path: '/scan',
     component: Scan
+  },
+  {
+    name: 'passwordManager',
+    path: '/passwordManager',
+    component: PasswordManager
   }
 ];
 
