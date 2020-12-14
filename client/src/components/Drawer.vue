@@ -36,12 +36,12 @@ export default {
       {
         icon: "mdi-security",
         title: "Менеджер паролей",
-        link: "/passwordManager",
+        link: "/password-manager",
       },
       {
         icon: "mdi-file-check",
         title: "Контроль целостности",
-        link: "/integrityСontrol",
+        link: "/integrity-control",
       },
     ],
   }),

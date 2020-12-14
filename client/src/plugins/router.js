@@ -24,12 +24,12 @@ const routes = [
   },
   {
     name: 'passwordManager',
-    path: '/passwordManager',
+    path: '/password-manager',
     component: PasswordManager
   },
   {
     name: 'integrityСontrol',
-    path: '/integrityСontrol',
+    path: '/integrity-control',
     component: IntegrityСontrol
   },
 ];

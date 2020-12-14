@@ -21,11 +21,8 @@
           <div>
             <article v-if="files.length" class="col">
               <h1>{{ files[files.length - 1].title }}</h1>
-              <div>Дата загрузки файла: {{ files[files.length - 1].date }}</div>
+              <div>Дата загрузки файла: {{ files[files.length - 1].createdAt }}</div>
               <div>Размер: {{ files[files.length - 1].size }}</div>
-              <div>
-                Контрольная сумма: {{ files[files.length - 1].checksum }}
-              </div>
             </article>
             <div v-else>Для начала работы загрузите файл</div>
           </div>
@@ -75,9 +72,8 @@ export default {
           sortable: false,
           value: "title",
         },
-        { text: "Дата загрузки", value: "date" },
+        { text: "Дата загрузки", value: "createdAt" },
         { text: "Размер файла", value: "size" },
-        { text: "Контрольная сумма (MD5)", value: "checksum", sortable: false },
       ],
     };
   },
