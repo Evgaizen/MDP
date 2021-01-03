@@ -5,7 +5,9 @@ import { InjectModel } from '@nestjs/mongoose';
 const NodeClam = require('clamscan');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
+import * as md5File from 'md5-file';
 import { File, FileDocument } from './schemas/file.schema';
+import has = Reflect.has;
 
 const ClamScan = new NodeClam().init();
 
@@ -37,5 +39,14 @@ export class FilesService {
 
   async remove(id): Promise<File> {
     return this.fileModel.findByIdAndRemove(id.id);
+  }
+
+  async check({ file, md5 }): Promise<boolean> {
+    let res = false;
+    await md5File(file.path).then((hash) => {
+      res = hash === md5;
+    });
+    await fs.unlinkSync(file.path);
+    return res;
   }
 }

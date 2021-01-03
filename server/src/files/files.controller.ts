@@ -8,6 +8,7 @@ import {
   Param,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
@@ -35,5 +36,16 @@ export class FilesController {
   @Delete(':id')
   async remove(@Param() id: string) {
     return await this.filesService.remove(id);
+  }
+
+  @Post('check')
+  @HttpCode(HttpStatus.OK)
+  @UseInterceptors(
+    FileInterceptor('file', {
+      dest: './src/files/upload',
+    }),
+  )
+  async checkFile(@UploadedFile() file, @Query('md5') md5: string) {
+    return await this.filesService.check({ file, md5 });
   }
 }
