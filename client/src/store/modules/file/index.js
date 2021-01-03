@@ -4,7 +4,8 @@ import getters from './getters'
 
 const state = () => ({
     files: [],
-    uploadPercent: null
+    uploadPercent: null,
+    stateCheck: 'warning'
 })
 
 export default {

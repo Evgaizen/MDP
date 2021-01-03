@@ -4,5 +4,8 @@ export default {
     },
     getUploadPercent(state) {
         return state.uploadPercent
+    },
+    getStateCheck(state) {
+        return state.stateCheck
     }
 }

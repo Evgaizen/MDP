@@ -10,5 +10,8 @@ export default {
     },
     clearUploadPercent(state) {
         state.uploadPercent = null
+    },
+    setStateCheck(state, payload) {
+        state.stateCheck = payload
     }
 }

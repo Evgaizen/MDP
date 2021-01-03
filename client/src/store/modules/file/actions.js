@@ -23,5 +23,12 @@ export default {
         }).catch(err => {
             console.log(err)
         })
+    },
+    async checkFile({commit}, {file, md5}) {
+        const formData = new FormData()
+        await formData.append('file', file)
+        await axios.post(apiPath+`/files/check?md5=${md5}`, formData).then(res => {
+            commit('setStateCheck', res.data ? 'success' : 'error')
+        })
     }
 }
