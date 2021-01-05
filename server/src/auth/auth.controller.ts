@@ -9,13 +9,13 @@ export class AuthController {
 
 
     @Post()
-    register(@Body(ValidationPipe) creditinals: UserDTO) {
-        return this.authService.register(creditinals)
+    register(@Body(ValidationPipe) credentials: UserDTO) {
+        return this.authService.register(credentials)
     }
 
     @Post('login')
-    login(@Body(ValidationPipe) creditinals: UserDTO) {
-        return this.authService.login(creditinals)
+    login(@Body(ValidationPipe) credentials: UserDTO) {
+        return this.authService.login(credentials)
     }
 
     @Get()
