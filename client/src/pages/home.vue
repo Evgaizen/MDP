@@ -1,18 +1,6 @@
 <template>
   <div class="home">
     <div class="home__card">
-      <h2 class="home__card-title">Новости</h2>
-      <div class="home__card-body">
-        <a
-          class="twitter-timeline"
-          data-width="650"
-          data-height="320"
-          href="https://twitter.com/d27oo?ref_src=twsrc%5Etfw"
-          >Tweets by d27oo</a
-        >
-      </div>
-    </div>
-    <div class="home__card">
       <h2 class="home__card-title">О нас</h2>
       <div class="home__card-body">
         <div>
@@ -72,23 +60,19 @@
     </div>
 
     <div class="home__card">
-      <h2 class="home__card-title">Документы</h2>
       <div class="home__card-body">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-3 col-lg-3">
             <v-card>
-              <v-card-title>Докумет 1</v-card-title>
+              <v-card-title>Комплект документов</v-card-title>
               <v-card-text>
                 <p style="margin: 0">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consequatur voluptatem commodi excepturi nemo corrupti.
-                  Dolorum temporibus molestias id quam magni, tempore, sit
-                  quisquam cum doloribus ex placeat esse commodi rerum!
+                  Программные документы оформленные по ГОСТу
                 </p>
               </v-card-text>
               <v-card-actions>
                 <div class="home__document-download">
-                  <v-btn color="primary lighten-2" text> Скачать </v-btn>
+                  <a color="primary lighten-2" text href="docs.rar" target="_blank" > Скачать </a>
                 </div>
               </v-card-actions>
             </v-card>
@@ -99,7 +83,9 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  
+};
 </script>
 
 <style lang="scss" scoped>
