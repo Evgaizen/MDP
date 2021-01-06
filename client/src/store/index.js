@@ -1,13 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
 // Modules
-import file from './modules/file/index'
+import file from "./modules/file/index";
+import auth from "./modules/auth/index";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: {
-        file
-    }
-})
+  modules: {
+    file,
+    auth,
+  },
+});
