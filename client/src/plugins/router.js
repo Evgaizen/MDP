@@ -69,3 +69,10 @@ const routes = [
 ];
 
 export const router = new VueRouter({ mode: "history", routes: routes });
+
+router.beforeEach(async (to, from, next) => {
+  if (localStorage.getItem("token") && store.getters.loggedIn) {
+    await store.dispatch("user");
+  }
+  next();
+});

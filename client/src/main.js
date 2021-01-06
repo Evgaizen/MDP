@@ -3,13 +3,13 @@ import App from "./App.vue";
 //Plugins
 import vuetify from "./plugins/vuetify";
 import { router } from "./plugins/router";
-import { setToken } from "./plugins/axios";
+import { $axios } from "./plugins/axios";
 
 import store from "./store/index";
 
 const token = localStorage.getItem("token");
 if (token) {
-  setToken(token);
+  $axios.defaults.headers.common["Authorization"] = token;
 }
 
 new Vue({
