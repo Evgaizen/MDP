@@ -35,6 +35,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-alert v-if="error" type="error" transition="scale-transition">
+      {{ error }}
+    </v-alert>
   </main>
 </template>
 <script>
@@ -45,13 +48,24 @@ export default {
         username: "",
         password: "",
       },
+      error: "",
     };
   },
   methods: {
     submitForm() {
-      this.$store.dispatch("login", this.form).then(() => {
-        this.$router.push("/");
-      });
+      this.$store
+        .dispatch("login", this.form)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch((err) => {
+          err.statusCode === 401
+            ? (this.error = "Вы ввели неправильные логин или пароль.")
+            : (this.error = err.message);
+          setTimeout(() => {
+            this.error = "";
+          }, 3000);
+        });
     },
     toRegistrationPage() {
       this.$router.push("/registration");
