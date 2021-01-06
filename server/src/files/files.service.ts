@@ -15,7 +15,7 @@ const ClamScan = new NodeClam().init();
 export class FilesService {
   constructor(@InjectModel(File.name) private fileModel: Model<FileDocument>) {}
 
-  async create(uploadedFile): Promise<File> {
+  async create(uploadedFile, userId): Promise<File> {
     const scanResult = await ClamScan.then(async (clamscan) => {
       const { is_infected } = await clamscan.is_infected(uploadedFile.path);
       return {
@@ -27,14 +27,15 @@ export class FilesService {
       size: `${(uploadedFile.size / (1024 * 1024)).toFixed(3)}mb`,
       isInfected: scanResult.isInfected,
       createdAt: new Date().toLocaleString(),
+      userId
     });
     await fs.unlinkSync(uploadedFile.path);
 
     return createdFile.save();
   }
 
-  async findAll(): Promise<File[]> {
-    return this.fileModel.find().exec();
+  async findAllByUserId(userId): Promise<File[]> {
+    return this.fileModel.find({ userId }).exec();
   }
 
   async remove(id): Promise<File> {

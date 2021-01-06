@@ -1,5 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose'
+
+import { User } from 'src/users/schemas/user.schema'
 
 export type FileDocument = File & Document;
 
@@ -16,6 +19,9 @@ export class File {
 
   @Prop()
   createdAt: string;
+
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  userId: User
 }
 
 export const FileSchema = SchemaFactory.createForClass(File);

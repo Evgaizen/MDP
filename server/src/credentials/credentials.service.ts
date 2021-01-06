@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import * as mongoose from 'mongoose'
 import { CreateCredentialDTO, UpdateCredentialDTO } from 'src/models/credential.dto';
 import { Credential, CredentialDocument } from './schemas/credential.schema';
 

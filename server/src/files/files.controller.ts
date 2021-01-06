@@ -9,8 +9,11 @@ import {
   HttpCode,
   HttpStatus,
   Query,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { FilesService } from './files.service';
 
 @Controller('files')
@@ -18,19 +21,21 @@ export class FilesController {
   constructor(private filesService: FilesService) {}
 
   @Get()
-  getAll() {
-    return this.filesService.findAll();
+  @UseGuards(JwtAuthGuard)
+  getAll(@Request() req) {
+    return this.filesService.findAllByUserId(req.user.id);
   }
 
   @Post('upload')
   @HttpCode(HttpStatus.CREATED)
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileInterceptor('file', {
       dest: './src/files/upload',
     }),
   )
-  async uploadFile(@UploadedFile() file) {
-    return await this.filesService.create(file);
+  async uploadFile(@UploadedFile() file, @Request() req) {
+    return await this.filesService.create(file, req.user.id);
   }
 
   @Delete(':id')
